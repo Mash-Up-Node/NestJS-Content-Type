@@ -39,12 +39,7 @@ export interface ContentTypeOptions {
 
 ### getObject<T>(contentType: ContentType, id: string | number): Promise<T>
 
-### createGenericRelation(
-
-contentType: ContentType,
-objectId: string | number,
-fieldName: string
-): Promise<GenericRelation>
+### createGenericRelation(contentType: ContentType,objectId: string | number,fieldName: string): Promise<GenericRelation>
 
 ### getGenericRelations(contentType: ContentType): Promise<GenericRelation[]>
 
