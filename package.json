@@ -1,6 +1,7 @@
 {
   "name": "nestjs-content-type",
   "version": "1.0.0",
+  "type": "module",
   "author": {
     "email": "mashup.node@gmail.com",
     "name": "MashUp Node"
@@ -10,7 +11,6 @@
   "scripts": {
     "build": "tsc",
     "start": "ts-node src/index.ts",
-    "dev": "nodemon --exec ts-node src/index.ts",
     "test": "jest",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
@@ -29,6 +29,7 @@
     "typeorm": "^0.3.21"
   },
   "devDependencies": {
+    "@nestjs/testing": "^11.0.12",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.24",
@@ -38,7 +39,6 @@
     "husky": "^8.0.0",
     "jest": "^29.7.0",
     "lint-staged": "^15.5.0",
-    "nodemon": "^3.1.0",
     "prettier": "^3.5.3",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",

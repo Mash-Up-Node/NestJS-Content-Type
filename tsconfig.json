@@ -6,7 +6,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "moduleResolution": "node",
-    "rootDir": "./src",
+    "rootDir": "./lib",
     "outDir": "./dist",
     "esModuleInterop": true,
     "strict": true,
@@ -15,6 +15,6 @@
     "sourceMap": true,
     "declaration": true
   },
-  "include": ["src/**/*"],
+  "include": ["lib/**/*"],
   "exclude": ["node_modules", "dist"]
 }
