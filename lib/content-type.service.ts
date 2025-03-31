@@ -60,7 +60,10 @@ export class ContentTypeService implements OnModuleInit {
     return contentType;
   }
 
-  async getObject(contentType: ContentType, id: number): Promise<any> {
+  async getObject<T extends { id: string | number }>(
+    contentType: ContentType,
+    id: string | number,
+  ): Promise<T | null> {
     /**
      * TypeORM의 Entity Metadata가 String인 혹시모를 경우 대비
      * 유즈케이스 확인 필요
@@ -77,17 +80,18 @@ export class ContentTypeService implements OnModuleInit {
       throw new Error(`Repository not found for model: ${contentType.appLabel}.${modelName}`);
     }
 
-    return repository.findOne({ where: { id } });
+    const result = await repository.findOne({ where: { id } });
+    return result as T | null;
   }
 
   async createGenericRelation(
     contentType: ContentType,
-    objectId: number,
+    objectId: string | number,
     fieldName: string,
   ): Promise<GenericRelation> {
     const relation = this.genericRelationRepository.create({
       contentType,
-      objectId,
+      objectId: String(objectId),
       fieldName,
     });
     return await this.genericRelationRepository.save(relation);

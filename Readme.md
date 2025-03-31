@@ -37,10 +37,15 @@ export interface ContentTypeOptions {
 
 ### getContentType(appLabel: string, model: string): Promise<ContentType>
 
-### getObject(contentType: ContentType, id: number): Promise<any>
+### getObject<T>(contentType: ContentType, id: string | number): Promise<T>
 
-### createGenericRelation(contentType: ContentType, objectId: number, fieldName: string): Promise<GenericRelation>
+### createGenericRelation(
+
+contentType: ContentType,
+objectId: string | number,
+fieldName: string
+): Promise<GenericRelation>
 
 ### getGenericRelations(contentType: ContentType): Promise<GenericRelation[]>
 
-### deleteGenericRelation(id:number): Promise<void>
+### deleteGenericRelation(id: number): Promise<void>

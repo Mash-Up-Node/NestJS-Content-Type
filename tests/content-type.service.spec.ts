@@ -36,7 +36,7 @@ describe('ContentTypeService', () => {
   };
 
   const mockObject = {
-    id: 1,
+    id: '1',
     name: 'Test Object',
   };
 
@@ -91,7 +91,7 @@ describe('ContentTypeService', () => {
 
   describe('Model Registration', () => {
     it('should register models on initialization', async () => {
-      const result = await service.getObject(mockContentType, 1);
+      const result = await service.getObject(mockContentType, '1');
       expect(result).toEqual(mockObject);
       expect(mockDataSource.getRepository).toHaveBeenCalledWith(DefaultModel);
     });
@@ -119,14 +119,14 @@ describe('ContentTypeService', () => {
 
   describe('getObject', () => {
     it('should return object by id', async () => {
-      const result = await service.getObject(mockContentType, 1);
+      const result = await service.getObject(mockContentType, '1');
       expect(result).toEqual(mockObject);
       expect(mockDataSource.getRepository).toHaveBeenCalledWith(DefaultModel);
     });
 
     it('should throw error if model not found', async () => {
       mockDataSource.getRepository.mockReturnValueOnce(null);
-      await expect(service.getObject(mockContentType, 1)).rejects.toThrow();
+      await expect(service.getObject(mockContentType, '1')).rejects.toThrow();
     });
   });
 
@@ -134,7 +134,7 @@ describe('ContentTypeService', () => {
     const mockGenericRelation: GenericRelation = {
       id: 1,
       contentType: mockContentType,
-      objectId: 1,
+      objectId: '1',
       fieldName: 'testField',
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -147,11 +147,11 @@ describe('ContentTypeService', () => {
     });
 
     it('should create generic relation', async () => {
-      const result = await service.createGenericRelation(mockContentType, 1, 'testField');
+      const result = await service.createGenericRelation(mockContentType, '1', 'testField');
       expect(result).toEqual(mockGenericRelation);
       expect(mockGenericRelationRepository.create).toHaveBeenCalledWith({
         contentType: mockContentType,
-        objectId: 1,
+        objectId: '1',
         fieldName: 'testField',
       });
     });

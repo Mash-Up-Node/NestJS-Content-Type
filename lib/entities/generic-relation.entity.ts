@@ -19,7 +19,7 @@ export class GenericRelation {
   contentType: ContentType;
 
   @Column()
-  objectId: number;
+  objectId: string;
 
   @Column()
   fieldName: string;
