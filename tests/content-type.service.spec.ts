@@ -86,7 +86,8 @@ describe('ContentTypeService', () => {
     );
     dataSource = module.get<DataSource>(DataSource);
 
-    await service.onModuleInit();
+    service.registerModel('test.DefaultModel', DefaultModel);
+    service.registerModel('defaultlabeledmodel.DefaultLabeledModel', DefaultLabeledModel);
   });
 
   describe('Model Registration', () => {

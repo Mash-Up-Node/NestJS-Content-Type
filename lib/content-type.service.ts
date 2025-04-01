@@ -1,12 +1,11 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
-import { getContentTypeMetadata } from './decorators/content-type.decorator';
 import { ContentType } from './entities/content-type.entity';
 import { GenericRelation } from './entities/generic-relation.entity';
 
 @Injectable()
-export class ContentTypeService implements OnModuleInit {
+export class ContentTypeService {
   /**
    * Convention
    *
@@ -23,18 +22,12 @@ export class ContentTypeService implements OnModuleInit {
     private dataSource: DataSource,
   ) {}
 
-  async onModuleInit() {
-    const entities = this.dataSource.entityMetadatas;
-    for (const entity of entities) {
-      const metadata = getContentTypeMetadata(entity.target);
-      if (!metadata) continue;
+  getDataSource(): DataSource {
+    return this.dataSource;
+  }
 
-      const modelName = typeof entity.target === 'function' ? entity.target.name : entity.target;
-      const appLabel = metadata.appLabel || modelName.toLowerCase();
-      const contentType = await this.getContentType(appLabel, modelName);
-
-      this.modelRegistry.set(`${contentType.appLabel}.${modelName}`, entity.target);
-    }
+  registerModel(key: string, model: any): void {
+    this.modelRegistry.set(key, model);
   }
 
   async getContentType(appLabel: string, model: string): Promise<ContentType> {
