@@ -1,8 +1,7 @@
 {
   "name": "@mashup-node/content-type",
   "private": false,
-  "version": "0.0.1",
-  "type": "module",
+  "version": "0.0.2",
   "author": {
     "email": "mashup.node@gmail.com",
     "name": "MashUp Node"
